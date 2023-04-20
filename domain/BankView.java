@@ -1,4 +1,4 @@
-package banking.domain;
+package src.domain;
 
 import java.util.Scanner;
 

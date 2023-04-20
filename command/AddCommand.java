@@ -1,8 +1,8 @@
-package banking.command;
+package src.command;
 
-import banking.domain.account.Account;
-import banking.domain.account.AccountCreator;
-import banking.domain.BankData;
+import src.domain.account.Account;
+import src.domain.account.AccountCreator;
+import src.domain.BankData;
 
 public class AddCommand implements Command {
     private BankData bd;

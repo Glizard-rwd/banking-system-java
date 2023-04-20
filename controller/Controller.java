@@ -1,8 +1,8 @@
-package banking.controller;
+package src.controller;
 
-import banking.command.Command;
-import banking.domain.BankData;
-import banking.domain.BankView;
+import src.command.Command;
+import src.domain.BankData;
+import src.domain.BankView;
 
 public class Controller {
     private Command command;

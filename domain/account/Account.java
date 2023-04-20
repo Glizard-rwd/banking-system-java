@@ -1,4 +1,4 @@
-package banking.domain.account;
+package src.domain.account;
 
 public class Account {
     private final CardNumber cardNum;
