@@ -1,7 +1,7 @@
-package banking.command;
+package src.command;
 
-import banking.controller.Application;
-import banking.domain.BankData;
+import src.controller.Application;
+import src.domain.BankData;
 
 public class BalanceCommand implements Command{
     private BankData bd;

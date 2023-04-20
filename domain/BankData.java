@@ -1,9 +1,8 @@
-package banking.domain;
+package src.domain;
 
-import banking.controller.Application;
-import banking.domain.account.Account;
+import src.controller.Application;
+import src.domain.account.Account;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

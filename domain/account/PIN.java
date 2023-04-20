@@ -1,4 +1,4 @@
-package banking.domain.account;
+package src.domain.account;
 
 import java.security.SecureRandom;
 import java.util.stream.Collectors;

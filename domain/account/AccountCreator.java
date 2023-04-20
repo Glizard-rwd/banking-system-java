@@ -1,7 +1,4 @@
-package banking.domain.account;
-
-
-import banking.controller.Application;
+package src.domain.account;
 
 // abstract class Account Factory: createAccount + createSpecificAccount
 // public class Account Creator
