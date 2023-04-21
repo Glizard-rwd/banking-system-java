@@ -4,8 +4,8 @@ import java.security.SecureRandom;
 import java.util.stream.Collectors;
 
 public class Account {
-    private String cardNum;
-    private String cardPIN;
+    private final String cardNum;
+    private final String cardPIN;
     private int balance;
 
     public Account() {
