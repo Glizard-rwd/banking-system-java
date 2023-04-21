@@ -6,7 +6,7 @@ import src.domain.account.Account;
 import java.sql.*;
 
 
-public class BankDBController {
+public class BankDatabase {
     // idea: no instance variable - no-arg constructor
     // connect to database
     // connect(): return a connection
