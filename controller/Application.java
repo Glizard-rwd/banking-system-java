@@ -1,9 +1,10 @@
 package src.controller;
 
-import src.command.AddCommand;
-import src.command.BalanceCommand;
-import src.command.Command;
-import src.command.LoginCommand;
+import src.controller.command.AddCommand;
+import src.controller.command.BalanceCommand;
+import src.controller.command.Command;
+import src.controller.command.LoginCommand;
+import src.domain.BankDatabase;
 import src.domain.BankView;
 
 public class Application {
