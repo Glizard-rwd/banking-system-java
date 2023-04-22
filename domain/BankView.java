@@ -70,10 +70,8 @@ public class BankView {
         System.out.println("You have successfully logged out!");
     }
 
-    public void exit() {
+    public void showExit() {
         System.out.println("Bye!");
     }
-
-
 
 }

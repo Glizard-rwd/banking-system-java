@@ -1,7 +1,6 @@
 package src.controller;
 
-import org.sqlite.SQLiteDataSource;
-import src.domain.account.Account;
+import banking.domain.account.Account;
 
 import java.sql.*;
 
@@ -10,25 +9,21 @@ public class BankDatabase {
     // idea: no instance variable - no-arg constructor
     // connect to database
     // connect(): return a connection
-    public Connection connect() {
-        String url = "jdbc:sqlite:db.s3db";
-        Connection conn = null;
-        try {
-            SQLiteDataSource dataSource = new SQLiteDataSource();
-            conn = dataSource.getConnection();
-        } catch (SQLException sqe) {
-            System.out.println(sqe.getMessage()); // todo: add to BANKVIEW
-        }
-        return conn;
+    private static final String DB_URL = "jdbc:sqlite:card.s3db";
+    public BankDatabase() {
+        createTable();
+    }
+    private Connection connect() throws SQLException {
+        return DriverManager.getConnection(DB_URL);
     }
 
     // create tables to keep records
     public void createTable() {
-        String tableSQL = "CREATE TABLE IF NOT EXISTS cards("
-                + "id INTEGER PRIMARY KEY"
-                + "number TEXT NOT NULL"
-                + "pin TEXT NOT NULL"
-                + "balance INTEGER DEFAULT 0"; // todo: combine sql to one file
+        String tableSQL = "CREATE TABLE IF NOT EXISTS card("
+                + "id INTEGER PRIMARY KEY,"
+                + "number TEXT NOT NULL,"
+                + "pin TEXT NOT NULL,"
+                + "balance INTEGER DEFAULT 0)"; // todo: combine sql to one file
         try (Connection conn = this.connect()) {
             Statement statement = conn.createStatement();
             statement.executeUpdate(tableSQL);
@@ -40,7 +35,7 @@ public class BankDatabase {
     // insert record into database
     // idea: the account must be auto-generated then input to database
     public void insertAccount(Account a) {
-        String insertSQL = "INSERT INTO cards(id, number, pin, balance) VALUES(?,?,?)"; // todo: combine sql to one file
+        String insertSQL = "INSERT INTO card(number, pin, balance) VALUES(?,?,?)"; // todo: combine sql to one file
         try (Connection conn = this.connect();
              PreparedStatement pStatement = conn.prepareStatement(insertSQL)) {
             pStatement.setString(1, a.getCardNum()); // insert card number
@@ -53,7 +48,7 @@ public class BankDatabase {
     }
 
     public Account findAccount(String cardNumber, String cardPin) {
-        String findSQL = "SELECT * FROM cards WHERE number=? AND pin=?"; // todo: combine sql to one file
+        String findSQL = "SELECT * FROM card WHERE number=? AND pin=?"; // todo: combine sql to one file
         try (Connection conn = this.connect();
              PreparedStatement pStatement = conn.prepareStatement(findSQL)) {
             pStatement.setString(1, cardNumber); // set resultSet object index 1 as card number
@@ -73,6 +68,23 @@ public class BankDatabase {
         }
         return null;
     }
+
+    public boolean checkAccount(String num, String pin) {
+        return findAccount(num, pin) != null;
+    }
+
+    public void showAccount(Account a) {
+        Application_1.BANK_VIEW.showCardInfo(a.getCardNum(), a.getCardPIN());
+    }
+
+    public void close() { //idea: close database
+        try {
+            DriverManager.getConnection(DB_URL + ";shutdown=true");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
 
 
