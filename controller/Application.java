@@ -5,7 +5,7 @@ import src.controller.command.BalanceCommand;
 import src.controller.command.Command;
 import src.controller.command.LoginCommand;
 import src.domain.BankDatabase;
-import src.domain.BankView;
+import src.view.BankView;
 
 public class Application {
     enum Menu {

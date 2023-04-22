@@ -1,4 +1,4 @@
-package src.domain;
+package src.view;
 
 import java.util.Scanner;
 
