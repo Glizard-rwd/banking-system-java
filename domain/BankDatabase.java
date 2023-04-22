@@ -11,8 +11,10 @@ public class BankDatabase {
     // connect to database
     // connect(): return a connection
     private static final String DB_URL = "jdbc:sqlite:card.s3db";
+    private CardDAO cardDAO;
     public BankDatabase() {
-        createTable();
+        this.cardDAO = new CardDAO();
+        this.createTable();
     }
     private Connection connect() throws SQLException {
         return DriverManager.getConnection(DB_URL);
@@ -20,11 +22,7 @@ public class BankDatabase {
 
     // create tables to keep records
     public void createTable() {
-        String tableSQL = "CREATE TABLE IF NOT EXISTS card("
-                + "id INTEGER PRIMARY KEY,"
-                + "number TEXT NOT NULL,"
-                + "pin TEXT NOT NULL,"
-                + "balance INTEGER DEFAULT 0)"; // todo: combine sql to one file
+        String tableSQL = this.cardDAO.createTableSQL();
         try (Connection conn = this.connect()) {
             Statement statement = conn.createStatement();
             statement.executeUpdate(tableSQL);
@@ -36,7 +34,7 @@ public class BankDatabase {
     // insert record into database
     // idea: the account must be auto-generated then input to database
     public void insertAccount(Account a) {
-        String insertSQL = "INSERT INTO card(number, pin, balance) VALUES(?,?,?)"; // todo: combine sql to one file
+        String insertSQL = cardDAO.insertSQL(); // todo: combine sql to one file
         try (Connection conn = this.connect();
              PreparedStatement pStatement = conn.prepareStatement(insertSQL)) {
             pStatement.setString(1, a.getCardNum()); // insert card number
@@ -49,7 +47,7 @@ public class BankDatabase {
     }
 
     public Account findAccount(String cardNumber, String cardPin) {
-        String findSQL = "SELECT * FROM card WHERE number=? AND pin=?"; // todo: combine sql to one file
+        String findSQL = this.cardDAO.findAccountSQL(); // todo: combine sql to one file
         try (Connection conn = this.connect();
              PreparedStatement pStatement = conn.prepareStatement(findSQL)) {
             pStatement.setString(1, cardNumber); // set resultSet object index 1 as card number
@@ -82,7 +80,7 @@ public class BankDatabase {
         try {
             DriverManager.getConnection(DB_URL + ";shutdown=true");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()); // todo: add to bankview
         }
     }
 
