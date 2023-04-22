@@ -1,16 +1,49 @@
 package src.domain;
 
-public class CardDAO {
-    // idea: separate the sql database from the java code
-    private static final String TABLE_NAME = "card";
-    private static final String DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME; // delete table command
-    private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "  ("
-            + " id INTEGER,"
-            + " number TEXT,"
-            + " pin TEXT,"
-            + " balance INTEGER DEFAULT 0"
-            + ")"; // add table command
+import src.domain.account.Account;
 
-    private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (number, pin, balance) VALUES (?, ?, ?)"; // insert command
-    private static final String FIND_BY_NUMBER = "SELECT * FROM " + TABLE_NAME + " WHERE number = ?"; // select command
+interface ICardDAO {
+    // idea: sql interface
+    String tableNameSQL();
+    String deleteSQL();
+    String createTableSQL();
+    String insertSQL();
+    String findAccountSQL();
+}
+
+public class CardDAO implements ICardDAO {
+    // idea: separate the sql database from the java code
+
+    private final String tableName = "card";
+    @Override
+    public String tableNameSQL() {
+        return tableName;
+    }
+
+    @Override
+    public String deleteSQL() {
+        return "DROP TABLE IF EXISTS " + tableName;
+    }
+
+    @Override
+    public String createTableSQL() {
+        return "CREATE TABLE " + tableName +
+                "\n ("
+                + "id INTEGER,\n"
+                + "number TEXT,\n"
+                + "pin  TEXT,\n"
+                + "balance INTEGER DEFAULT 0"
+                + ")";
+    }
+    @Override
+    public String insertSQL() {
+        return "INSERT INTO " + tableName + " (number,pin,balance) "
+                + "VALUES(?,?,?)";
+    }
+
+    @Override
+    public String findAccountSQL() {
+        return "SELECT * FROM " + tableName + " WHERE number=? AND pin=?";
+    }
+
 }
