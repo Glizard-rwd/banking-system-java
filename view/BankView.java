@@ -1,5 +1,7 @@
 package src.view;
 
+import java.security.cert.Extension;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class BankView {
@@ -73,5 +75,19 @@ public class BankView {
     public void showExit() {
         System.out.println("Bye!");
     }
+
+
+    public void createTableError(SQLException sqe) {
+        System.out.println("Error creating table: " + sqe.getMessage());
+    }
+
+    public void findAccountError(SQLException sqe) {
+        System.out.println("Error finding account: " + sqe.getMessage());
+    }
+
+    public void insertAccountError(SQLException sqe) {
+        System.out.println("Error inserting account: " + sqe.getMessage());
+    }
+
 
 }
