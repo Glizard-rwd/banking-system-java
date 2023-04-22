@@ -1,6 +1,6 @@
-package src.command;
+package src.controller.command;
 
-import src.controller.BankDatabase;
+import src.domain.BankDatabase;
 import src.domain.account.Account;
 import src.domain.account.AccountCreator;
 

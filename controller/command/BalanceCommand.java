@@ -1,7 +1,7 @@
-package src.command;
+package src.controller.command;
 
 import src.controller.Application;
-import src.controller.BankDatabase;
+import src.domain.BankDatabase;
 
 public class BalanceCommand implements Command {
     private BankDatabase bd;
