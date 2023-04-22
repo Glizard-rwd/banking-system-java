@@ -1,14 +1,14 @@
 package src.command;
 
-import banking.controller.Application_1;
-import banking.controller.BankDatabase;
+import src.controller.Application;
+import src.controller.BankDatabase;
 
-public class LoginCommand_1 implements Command_1 {
+public class LoginCommand implements Command {
     private BankDatabase bd;
     private final String cardNum;
     private String pin;
 
-    public LoginCommand_1(BankDatabase bd, String num, String pin) {
+    public LoginCommand(BankDatabase bd, String num, String pin) {
         this.bd = bd;
         this.cardNum = num;
         this.pin = pin;
@@ -21,9 +21,9 @@ public class LoginCommand_1 implements Command_1 {
     @Override
     public void execute() {
         if (!isLoggedIn()) {
-            Application_1.BANK_VIEW.showWrongData();
+            Application.BANK_VIEW.showWrongData();
         } else {
-            Application_1.BANK_VIEW.showLoggedIn();
+            Application.BANK_VIEW.showLoggedIn();
         }
     }
 }

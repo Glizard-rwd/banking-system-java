@@ -1,12 +1,12 @@
 package src.command;
 
-import banking.controller.BankDatabase;
-import banking.domain.account.Account;
-import banking.domain.account.AccountCreator;
+import src.controller.BankDatabase;
+import src.domain.account.Account;
+import src.domain.account.AccountCreator;
 
-public class AddCommand_1 implements Command_1 {
+public class AddCommand implements Command {
     private BankDatabase bd;
-    public AddCommand_1(BankDatabase bd) {
+    public AddCommand(BankDatabase bd) {
         this.bd = bd;
     }
     @Override

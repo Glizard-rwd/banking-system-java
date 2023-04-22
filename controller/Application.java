@@ -1,12 +1,12 @@
 package src.controller;
 
-import banking.command.AddCommand_1;
-import banking.command.BalanceCommand_1;
-import banking.command.Command_1;
-import banking.command.LoginCommand_1;
-import banking.domain.BankView;
+import src.command.AddCommand;
+import src.command.BalanceCommand;
+import src.command.Command;
+import src.command.LoginCommand;
+import src.domain.BankView;
 
-public class Application_1 {
+public class Application {
     enum Menu {
         CREATE("1"), LOGIN("2"), EXIT("0");
         private final String value;
@@ -51,7 +51,7 @@ public class Application_1 {
 
     private static final BankDatabase BANK_DATABASE = new BankDatabase(); // idea: cardDAO =))
     public static final BankView BANK_VIEW = new BankView(); // todo: should be public?
-    private static final Controller_1 CONTROLLER = new Controller_1();
+    private static final Controller CONTROLLER = new Controller();
 
 
     // run
@@ -80,7 +80,7 @@ public class Application_1 {
     }
 
     private void createAction() {
-        Command_1 createAccount = new AddCommand_1(BANK_DATABASE);
+        Command createAccount = new AddCommand(BANK_DATABASE);
         CONTROLLER.setCommand(createAccount);
         CONTROLLER.execute();
     }
@@ -90,7 +90,7 @@ public class Application_1 {
         String checkCardNum = BANK_VIEW.askUserInput();
         BANK_VIEW.askEnterPIN();
         String checkPIN = BANK_VIEW.askUserInput();
-        LoginCommand_1 loginCommand = new LoginCommand_1(BANK_DATABASE, checkCardNum, checkPIN);
+        LoginCommand loginCommand = new LoginCommand(BANK_DATABASE, checkCardNum, checkPIN);
         CONTROLLER.setCommand(loginCommand);
         CONTROLLER.execute(); // final
         if (loginCommand.isLoggedIn()) {
@@ -105,7 +105,7 @@ public class Application_1 {
             if (cardOption != null) {
                 switch (cardOption) {
                     case BALANCE -> {
-                        CONTROLLER.setCommand(new BalanceCommand_1(BANK_DATABASE, cardNum, pin));
+                        CONTROLLER.setCommand(new BalanceCommand(BANK_DATABASE, cardNum, pin));
                         CONTROLLER.execute();
                     }
                     case LOGOUT -> run();
@@ -118,6 +118,5 @@ public class Application_1 {
                 }
             }
         }
-
     }
 }

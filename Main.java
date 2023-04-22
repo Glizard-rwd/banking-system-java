@@ -1,10 +1,10 @@
 package src;
 
-import src.controller.Application_1;
+import src.controller.Application;
 
 public class Main {
     public static void main(String[] args) {
-        Application_1 application = new Application_1();
+        Application application = new Application();
         application.run();
     }
 

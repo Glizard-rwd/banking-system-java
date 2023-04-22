@@ -1,5 +1,5 @@
 package src.command;
 
-public interface Command_1 {
+public interface Command {
     void execute();
 }

@@ -1,6 +1,6 @@
 package src.controller;
 
-import banking.domain.account.Account;
+import src.domain.account.Account;
 
 import java.sql.*;
 
@@ -74,7 +74,7 @@ public class BankDatabase {
     }
 
     public void showAccount(Account a) {
-        Application_1.BANK_VIEW.showCardInfo(a.getCardNum(), a.getCardPIN());
+        Application.BANK_VIEW.showCardInfo(a.getCardNum(), a.getCardPIN());
     }
 
     public void close() { //idea: close database
