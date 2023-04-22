@@ -1,16 +1,16 @@
 package src.command;
 
 import src.controller.Application;
-import src.domain.BankData;
+import src.controller.BankDatabase;
 
 public class LoginCommand implements Command {
-    private BankData bd;
-    private String cardNum;
+    private BankDatabase bd;
+    private final String cardNum;
     private String pin;
 
-    public LoginCommand(BankData bd, String cardNum, String pin) {
+    public LoginCommand(BankDatabase bd, String num, String pin) {
         this.bd = bd;
-        this.cardNum = cardNum;
+        this.cardNum = num;
         this.pin = pin;
     }
 
@@ -26,5 +26,4 @@ public class LoginCommand implements Command {
             Application.BANK_VIEW.showLoggedIn();
         }
     }
-
 }
