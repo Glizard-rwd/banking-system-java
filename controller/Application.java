@@ -109,7 +109,10 @@ public class Application {
                         CONTROLLER.setCommand(new BalanceCommand(BANK_DATABASE, cardNum, pin));
                         CONTROLLER.execute();
                     }
-                    case LOGOUT -> run();
+                    case LOGOUT -> {
+                        BANK_VIEW.showLoggedOut();
+                        run();
+                    }
                     case EXIT -> {
                         BANK_DATABASE.close(); // Close the database connection
                         BANK_VIEW.showExit();
