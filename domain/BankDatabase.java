@@ -2,6 +2,7 @@ package src.domain;
 
 import src.controller.Application;
 import src.domain.account.Account;
+import src.view.BankView;
 
 import java.sql.*;
 
@@ -27,7 +28,7 @@ public class BankDatabase {
             Statement statement = conn.createStatement();
             statement.executeUpdate(tableSQL);
         } catch (SQLException sqe) {
-            System.out.println(sqe.getMessage()); // todo: add to bankview
+            Application.BANK_VIEW.createTableError(sqe); // todo: add to bankview
         }
     }
 
@@ -42,12 +43,12 @@ public class BankDatabase {
             pStatement.setInt(3, a.getBalance()); // insert card balance
             pStatement.executeUpdate();
         } catch (SQLException sqe) {
-            System.out.println(sqe.getMessage()); // todo: add to bankview
+            Application.BANK_VIEW.insertAccountError(sqe); // todo: add to bankview
         }
     }
 
     public Account findAccount(String cardNumber, String cardPin) {
-        String findSQL = this.cardDAO.findAccountSQL(); // todo: combine sql to one file
+        String findSQL = this.cardDAO.findAccountSQL(); // idea: combine sql to one file
         try (Connection conn = this.connect();
              PreparedStatement pStatement = conn.prepareStatement(findSQL)) {
             pStatement.setString(1, cardNumber); // set resultSet object index 1 as card number
@@ -63,7 +64,7 @@ public class BankDatabase {
                 }
             }
         } catch (SQLException sqe) {
-            System.out.println(sqe.getMessage()); // todo: add to bankview
+            Application.BANK_VIEW.findAccountError(sqe); // todo: add to bankview
         }
         return null;
     }
