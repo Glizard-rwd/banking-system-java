@@ -82,6 +82,18 @@ public class BankDatabase {
     }
 
     public void addIncome(Account a, int income) {
+        String addIncomeSQL = this.cardDAO.addIncome(); // idea: combine sql to one file
+        try (Connection conn = this.connect();
+             PreparedStatement pStatement = conn.prepareStatement(addIncomeSQL)) {
+            pStatement.setInt(1, a.getBalance()); // first "?" = current account balance
+            pStatement.setInt(2, income); // second "?" = income
+            pStatement.setString(3, a.getCardNum()); // final "?" = card number
+            pStatement.executeUpdate(); // execute the sql statement
+            conn.commit(); // todo: why do we need this line
+            a.setBalance(a.getBalance() + income); // update the balance of account a
+        } catch (SQLException sqe) {
+            Application.BANK_VIEW.insertIncomeError(sqe); // todo: add to bankview
+        }
 
     }
 

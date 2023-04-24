@@ -114,11 +114,15 @@ public class BankView {
     public void showCloseAccount() {
         System.out.println("The account has been closed!");
     }
-    public void enterIncome() {
+    public void askEnterIncome() {
         System.out.println("Enter income:");
     }
 
     public void showIncomeAdded() {
         System.out.println("Income was added!");
+    }
+
+    public void insertIncomeError(SQLException sqe) {
+        System.out.println("Error inserting income: " + sqe.getMessage());
     }
 }
