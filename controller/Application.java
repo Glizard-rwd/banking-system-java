@@ -30,7 +30,12 @@ public class Application {
 
     } // enum: CREATE("1"), LOGIN("2"), EXIT("0")
     enum Card {
-        BALANCE("1"), LOGOUT("2"), EXIT("0");
+        BALANCE("1"),
+        ADD_INCOME("2"),
+        DO_TRANSFER("3"),
+        CLOSE_ACCOUNT("4"),
+        LOGOUT("5"),
+        EXIT("0");
         private final String value;
         Card(String value) {
             this.value = value;
@@ -48,7 +53,7 @@ public class Application {
             }
             return null;
         }
-    } // enum: BALANCE("1"), LOGOUT("2"), EXIT("0")
+    }
 
     private static final BankDatabase BANK_DATABASE = new BankDatabase(); // idea: cardDAO =))
     public static final BankView BANK_VIEW = new BankView(); // todo: should be public?
@@ -109,6 +114,18 @@ public class Application {
                         CONTROLLER.setCommand(new BalanceCommand(BANK_DATABASE, cardNum, pin));
                         CONTROLLER.execute();
                     }
+                    case ADD_INCOME -> {
+
+                    }
+
+                    case DO_TRANSFER -> {
+
+                    }
+
+                    case CLOSE_ACCOUNT -> {
+
+                    }
+
                     case LOGOUT -> {
                         BANK_VIEW.showLoggedOut();
                         run();
