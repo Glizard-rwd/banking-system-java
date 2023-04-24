@@ -46,12 +46,12 @@ public class CardDAO implements ICardDAO {
         return "SELECT * FROM " + tableName + " WHERE number=? AND pin=?";
     }
 
-    public String addIncome() {
+    public String addMoney() {
         return "UPDATE " + tableName + " SET balance=? + ? WHERE number=?";
     }
+
 
     public String deleteAccountSQL() {
         return "DELETE FROM " + tableName + " WHERE number=?";
     }
-
 }

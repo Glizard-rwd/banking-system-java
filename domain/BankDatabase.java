@@ -82,7 +82,7 @@ public class BankDatabase {
     }
 
     public void addIncome(Account a, int income) {
-        String addIncomeSQL = this.cardDAO.addIncome(); // idea: combine sql to one file
+        String addIncomeSQL = this.cardDAO.addMoney(); // idea: combine sql to one file
         try (Connection conn = this.connect();
              PreparedStatement pStatement = conn.prepareStatement(addIncomeSQL)) {
             pStatement.setInt(1, a.getBalance()); // first "?" = current account balance
@@ -96,11 +96,6 @@ public class BankDatabase {
         }
 
     }
-
-    public void doTransfer(Account a, Account b, int amount) {
-
-    }
-
 
     public void close() { //idea: close database
         try {
