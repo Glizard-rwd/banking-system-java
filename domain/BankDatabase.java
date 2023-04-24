@@ -18,7 +18,11 @@ public class BankDatabase {
         this.createTable();
     }
     private Connection connect() throws SQLException {
-        return DriverManager.getConnection(DB_URL);
+        Connection conn = DriverManager.getConnection(DB_URL);
+        // methods will be part of the same transaction
+        // and will only be committed once all statements have been successfully executed.
+        conn.setAutoCommit(false);
+        return conn;
     }
 
     // create tables to keep records
@@ -76,6 +80,15 @@ public class BankDatabase {
     public void showAccount(Account a) {
         Application.BANK_VIEW.showCardInfo(a.getCardNum(), a.getCardPIN());
     }
+
+    public void addIncome(Account a, int income) {
+
+    }
+
+    public void doTransfer(Account a, Account b, int amount) {
+
+    }
+
 
     public void close() { //idea: close database
         try {
