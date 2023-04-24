@@ -5,7 +5,7 @@ import src.domain.account.Account;
 interface ICardDAO {
     // idea: sql interface
     String tableNameSQL();
-    String deleteSQL();
+    String deleteTableSQL();
     String createTableSQL();
     String insertSQL();
     String findAccountSQL();
@@ -21,7 +21,7 @@ public class CardDAO implements ICardDAO {
     }
 
     @Override
-    public String deleteSQL() {
+    public String deleteTableSQL() {
         return "DROP TABLE IF EXISTS " + tableName;
     }
 
@@ -44,6 +44,14 @@ public class CardDAO implements ICardDAO {
     @Override
     public String findAccountSQL() {
         return "SELECT * FROM " + tableName + " WHERE number=? AND pin=?";
+    }
+
+    public String updateBalanceSQL() {
+        return "UPDATE " + tableName + " SET balance=? WHERE number=?";
+    }
+
+    public String deleteAccountSQL() {
+        return "DELETE FROM " + tableName + " WHERE number=?";
     }
 
 }
