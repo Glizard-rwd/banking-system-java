@@ -18,9 +18,9 @@ public class BankDatabase {
         this.createTable();
     }
     private Connection connect() throws SQLException {
-        Connection conn = DriverManager.getConnection(DB_URL);
-        // methods will be part of the same transaction
+        //methods will be part of the same transaction
         // and will only be committed once all statements have been successfully executed.
+        Connection conn = DriverManager.getConnection(DB_URL);
         conn.setAutoCommit(false);
         return conn;
     }
