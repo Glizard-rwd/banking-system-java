@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class BankView {
-    private Scanner scanner;
+    private final Scanner scanner;
     public BankView() {
         this.scanner = new Scanner(System.in);
     }
@@ -19,7 +19,10 @@ public class BankView {
 
     public void showCardTask() {
         String prompt = "1. Balance\n" +
-                "2. Log out\n" +
+                "2. Add income\n" +
+                "3. Do transfer\n" +
+                "4. Close account\n" +
+                "5. Log out\n" +
                 "0. Exit";
         System.out.println(prompt);
     }
@@ -29,8 +32,7 @@ public class BankView {
     }
 
     public String askUserInput() {
-        String input = scanner.nextLine();
-        return input;
+        return scanner.nextLine();
     }
 
 
@@ -87,6 +89,30 @@ public class BankView {
 
     public void insertAccountError(SQLException sqe) {
         System.out.println("Error inserting account: " + sqe.getMessage());
+    }
+
+    public void sameAccountError() {
+        System.out.println("You can't transfer money to the same account!");
+    }
+
+    public void luhnError() {
+        System.out.println("Probably you made a mistake in the card number. Please try again!");
+    }
+
+    public void notExistError() {
+        System.out.println("Such a card does not exist.");
+    }
+
+    public void notEnoughMoneyError() {
+        System.out.println("Not enough money!");
+    }
+
+    public void askForTransfer() {
+        System.out.println("Enter how much money you want to transfer:");
+    }
+
+    public void showCloseAccount() {
+        System.out.println("The account has been closed!");
     }
 
 
