@@ -114,6 +114,11 @@ public class BankView {
     public void showCloseAccount() {
         System.out.println("The account has been closed!");
     }
+    public void enterIncome() {
+        System.out.println("Enter income:");
+    }
 
-
+    public void showIncomeAdded() {
+        System.out.println("Income was added!");
+    }
 }
