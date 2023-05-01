@@ -1,6 +1,7 @@
 package src.domain.account;
 
 import java.security.SecureRandom;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Account {
@@ -32,7 +33,7 @@ public class Account {
         return cardNum;
     }
 
-    private boolean luhn(String cardNumber) {
+    private static boolean luhn(String cardNumber) {
         int sumDigits = 0;
         boolean isDouble = false;
         for (int i = cardNumber.length()-1; i >= 0; i--) {
@@ -46,17 +47,21 @@ public class Account {
         return sumDigits % 10 == 0;
     }
 
-    private int doubleAndSubtract(int digit) {
+    // check card number is valid in luhn algorithm
+    public static boolean isCardValid(String cardNumber) {
+        return luhn(cardNumber);
+    }
+
+    private static int doubleAndSubtract(int digit) {
         int d = digit * 2;
         return (d>9)? d-9: d;
     }
 
     private String generatePIN() {
         SecureRandom secureRandom = new SecureRandom();
-        String pin = secureRandom.ints(4, 0, 10)
+        return secureRandom.ints(4, 0, 10)
                 .mapToObj(Integer::toString)
                 .collect(Collectors.joining());
-        return pin;
     }
 
     public int getBalance() {
@@ -66,13 +71,44 @@ public class Account {
     public void setBalance(int balance) {
         this.balance = balance;
     }
-
     public String getCardNum() {
         return cardNum;
     }
-
     public String getCardPIN() {
         return cardPIN;
+    }
+
+    // deposit account
+    public int deposit(int amount) {
+        this.balance += amount;
+        return this.balance;
+    }
+
+    // withdraw account
+    public int withdraw(int amount) {
+        this.balance -= amount;
+        return this.balance;
+    }
+
+    // can transfer?
+    public boolean canTransfer(int amount) {
+        return this.balance >= amount;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Account other)) {
+            return false;
+        }
+        return Objects.equals(this.cardNum, other.cardNum);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cardNum);
     }
 }
 

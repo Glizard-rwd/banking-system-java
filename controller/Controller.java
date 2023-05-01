@@ -1,6 +1,6 @@
 package src.controller;
 
-import src.command.Command;
+import src.controller.command.Command;
 
 public class Controller {
     private Command command;

@@ -1,12 +1,12 @@
-package src.command;
+package src.controller.command;
 
 import src.controller.Application;
-import src.controller.BankDatabase;
+import src.domain.BankDatabase;
 
 public class LoginCommand implements Command {
-    private BankDatabase bd;
+    private final BankDatabase bd;
     private final String cardNum;
-    private String pin;
+    private final String pin;
 
     public LoginCommand(BankDatabase bd, String num, String pin) {
         this.bd = bd;
