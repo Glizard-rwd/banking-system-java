@@ -4,7 +4,6 @@ package src.domain.account;
 // public class Account Creator
 public class AccountCreator {
     public final Account createAccount() {
-        Account a = new Account();
-        return a;
+        return new Account();
     }
 }

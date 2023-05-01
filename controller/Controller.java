@@ -8,6 +8,7 @@ public class Controller {
     public void setCommand(Command command) {
         this.command = command;
     }
+
     public void execute() {
         this.command.execute();
     }

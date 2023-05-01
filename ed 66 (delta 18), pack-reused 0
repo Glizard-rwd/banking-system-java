@@ -1,0 +1,20 @@
+[33m7edde68[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/develop[m[33m)[m Merge branch 'main-feature' into develop
+[33me989aad[m main feature: main (test) class
+[33m51b8705[m Merge branch 'sqldb-feature' into develop
+[33md314a2c[m sqldb feature: bank database sql file
+[33m4f91ea9[m Merge branch 'domain-feature' into develop
+[33m7c5189e[m domain feature: bank database
+[33m18f1f93[m domain feature: bank notification (bank view)
+[33m6bd77ee[m domain feature: pin class
+[33m270d9dc[m domain feature: card number class
+[33m1433c3d[m domain feature: account creator class
+[33mf0b5739[m domain-feature: account class
+[33me233313[m Merge branch 'controller-feature' into develop
+[33m2f61347[m controller feature: controller
+[33m54a757f[m controller feature: banking application
+[33m8ed7808[m Merge branch 'command-feature' into develop
+[33m687e259[m command-feature: command interface
+[33m7ca82e9[m command feature: account login
+[33m75eae74[m command featur: show one's account balance
+[33m0d8a15b[m command feature: add account
+[33m0f628c3[m create README.txt file: version 0.0

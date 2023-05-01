@@ -1,6 +1,5 @@
 package src.view;
 
-import java.security.cert.Extension;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -79,24 +78,32 @@ public class BankView {
     }
 
 
-    public void createTableError(SQLException sqe) {
-        System.out.println("Error creating table: " + sqe.getMessage());
+    public void createTableError() {
+        System.out.println("Error creating table");
     }
 
     public void findAccountError(SQLException sqe) {
         System.out.println("Error finding account: " + sqe.getMessage());
     }
 
-    public void insertAccountError(SQLException sqe) {
-        System.out.println("Error inserting account: " + sqe.getMessage());
+    public void insertAccountError() {
+        System.out.println("Error inserting account");
+    }
+
+    public void insertIncomeError(SQLException sqe) {
+        System.out.println("Error inserting income: " + sqe.getMessage());
+    }
+
+    public void transferMoneyError(SQLException sqe) {
+        System.out.println("Error transfer money: " + sqe.getMessage());
     }
 
     public void sameAccountError() {
         System.out.println("You can't transfer money to the same account!");
     }
 
-    public void luhnError() {
-        System.out.println("Probably you made a mistake in the card number. Please try again!");
+    public void luhnError(){
+        System.out.println(("Probably you made a mistake in the card number. Please try again!"));
     }
 
     public void notExistError() {
@@ -122,7 +129,12 @@ public class BankView {
         System.out.println("Income was added!");
     }
 
-    public void insertIncomeError(SQLException sqe) {
-        System.out.println("Error inserting income: " + sqe.getMessage());
+    public void transferDone() {
+        System.out.println("Success!");
+    }
+
+
+    public void deleteAccountError(SQLException sqe) {
+        System.out.println("Error deleting account: " + sqe.getMessage());
     }
 }

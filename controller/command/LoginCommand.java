@@ -4,9 +4,9 @@ import src.controller.Application;
 import src.domain.BankDatabase;
 
 public class LoginCommand implements Command {
-    private BankDatabase bd;
+    private final BankDatabase bd;
     private final String cardNum;
-    private String pin;
+    private final String pin;
 
     public LoginCommand(BankDatabase bd, String num, String pin) {
         this.bd = bd;
